@@ -5,9 +5,7 @@
         </v-card-title>
         <v-card-text class="mt-8">
             <v-radio-group>
-                <v-radio label="Answear 1" value="1"></v-radio>
-                <v-radio label="Answear 2" value="2"></v-radio>
-                <v-radio label="Answear 3" value="3"></v-radio>
+                <v-radio :label="`Answear ${ n }`" :value="n" v-for="n in 5" :key="n" />
             </v-radio-group>
         </v-card-text>
         <v-card-actions class="cardActions">
