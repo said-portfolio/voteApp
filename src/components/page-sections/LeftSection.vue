@@ -20,7 +20,7 @@
                 </v-row>
             </div>
 
-            <v-row no-gutters dense>
+            <v-row no-gutters class="mb-10">
                 <v-col cols="10">
                     <v-text-field label="Question" placeholder="Type an answer" clearable />
                 </v-col>
@@ -34,7 +34,7 @@
             <v-row no-gutters style="align-items: baseline; justify-content: center;">
                 <v-col cols="4">{{ optionsCounter }}/10 possible answers</v-col>
                 <v-col cols="4">
-                    <v-btn  class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger">
+                    <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger">
                         Reset
                     </v-btn>
                 </v-col>
@@ -46,7 +46,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const optionsCounter = ref(5)
+const optionsCounter = ref(0)
 </script>
 
 <style scoped>
@@ -54,11 +54,10 @@ const optionsCounter = ref(5)
     margin-bottom: 1%;
     min-height: 100%;
 }
-
 .cardActions {
-    position: absolute; /* absolute if row number <5 and relative if === 10 */
     bottom: 0px;
     min-width: 100%;
+    position: absolute;
 }
 .resetBtn {
     min-width: 100%;
