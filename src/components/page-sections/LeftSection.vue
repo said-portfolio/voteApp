@@ -31,7 +31,7 @@
         </v-card-text>
 
         <v-card-actions class="cardActions">
-            <v-row no-gutters style="align-items: baseline; justify-content: center;">
+            <v-row no-gutters style="align-items: baseline; justify-content: end;">
                 <v-col cols="4">{{ optionsCounter }}/10 possible answers</v-col>
                 <v-col cols="4">
                     <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger">
