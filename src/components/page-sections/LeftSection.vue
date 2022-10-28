@@ -3,8 +3,9 @@
         <v-card-title>
             <v-row no-gutters>
                 <v-col cols="12">
-                    <v-text-field label="Question" placeholder="What is your Name ?" clearable />
+                    <v-text-field label="Question" v-model="question" placeholder="What is your Name ?" clearable />
                 </v-col>
+                <v-btn @click="handelSetQuestion">set question</v-btn> <!--handlerSetQuestion can be managed by native focusout-->
             </v-row>
         </v-card-title>
 
@@ -42,11 +43,18 @@
         </v-card-actions>
     </v-card>
 </template>
-
 <script setup>
+
+import { useVoteStore } from '@/store';
 import { ref } from 'vue';
 
+const voteStore = useVoteStore()
+
 const optionsCounter = ref(0)
+
+const question = ref('')
+const handelSetQuestion = () => { voteStore.defineTopicQuestion(question.value) }
+
 </script>
 
 <style scoped>

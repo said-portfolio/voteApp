@@ -10,8 +10,10 @@ specifiers:
   core-js: ^3.8.3
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
+  pinia: ^2.0.23
   roboto-fontface: '*'
   vue: ^3.2.13
+  vue-cli-plugin-pinia: ~0.2.1
   vue-cli-plugin-vuetify: ~2.5.8
   vuetify: ^3.0.0-beta.0
   webfontloader: ^1.0.0
@@ -20,6 +22,7 @@ specifiers:
 dependencies:
   '@mdi/font': 5.9.55
   core-js: 3.26.0
+  pinia: 2.0.23_vue@3.2.41
   roboto-fontface: 0.10.0
   vue: 3.2.41
   vuetify: 3.0.0-beta.15_f017fdeb1ef9c150ca12b38e830318fb
@@ -33,6 +36,7 @@ devDependencies:
   '@vue/cli-service': 5.0.8_@babel+core@7.19.6
   eslint: 7.32.0
   eslint-plugin-vue: 8.7.1_eslint@7.32.0
+  vue-cli-plugin-pinia: 0.2.1_@vue+cli-service@5.0.8
   vue-cli-plugin-vuetify: 2.5.8
   webpack-plugin-vuetify: 2.0.0_vue@3.2.41+vuetify@3.0.0-beta.15
 
@@ -1957,6 +1961,10 @@ packages:
     optionalDependencies:
       prettier: 2.7.1
     dev: true
+
+  /@vue/devtools-api/6.4.5:
+    resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
+    dev: false
 
   /@vue/reactivity-transform/3.2.41:
     resolution: {integrity: sha512-mK5+BNMsL4hHi+IR3Ft/ho6Za+L3FA5j8WvreJ7XzHrqkPq8jtF/SMo7tuc9gHjLDwKZX1nP1JQOKo9IEAn54A==}
@@ -4921,6 +4929,23 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
+  /pinia/2.0.23_vue@3.2.41:
+    resolution: {integrity: sha512-N15hFf4o5STrxpNrib1IEb1GOArvPYf1zPvQVRGOO1G1d74Ak0J0lVyalX/SmrzdT4Q0nlEFjbURsmBmIGUR5Q==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.4.5
+      vue: 3.2.41
+      vue-demi: 0.13.11_vue@3.2.41
+    dev: false
+
   /pkg-dir/4.2.0:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
@@ -6251,6 +6276,14 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
+  /vue-cli-plugin-pinia/0.2.1_@vue+cli-service@5.0.8:
+    resolution: {integrity: sha512-ND6EcDD55sqlmQvnXTkAc/Xb3QmwuATS+rFdDql9LiSAS1DJizFZc49US/UlaHatecEKi32GXw91rI9AS8b+nw==}
+    peerDependencies:
+      '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
+    dependencies:
+      '@vue/cli-service': 5.0.8_@babel+core@7.19.6
+    dev: true
+
   /vue-cli-plugin-vuetify/2.5.8:
     resolution: {integrity: sha512-uqi0/URJETJBbWlQHD1l0pnY7JN8Ytu+AL1fw50HFlGByPa8/xx+mq19GkFXA9FcwFT01IqEc/TkxMPugchomg==}
     peerDependencies:
@@ -6267,6 +6300,21 @@ packages:
       semver: 7.3.8
       shelljs: 0.8.5
     dev: true
+
+  /vue-demi/0.13.11_vue@3.2.41:
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.41
+    dev: false
 
   /vue-eslint-parser/8.3.0_eslint@7.32.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}
