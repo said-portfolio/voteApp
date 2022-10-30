@@ -26,16 +26,6 @@ const options = ref([
     { name: 'option 1', value: 10, color: 'primary' },
     { name: 'option 2', value: 50, color: 'secondary' },
     { name: 'option 3', value: 70, color: 'warning' },
-
-    { name: 'option 1', value: 30, color: 'primary' },
-    { name: 'option 2', value: 50, color: 'secondary' },
-    { name: 'option 3', value: 70, color: 'warning' },
-
-    { name: 'option 1', value: 30, color: 'primary' },
-    { name: 'option 2', value: 50, color: 'secondary' },
-    { name: 'option 3', value: 70, color: 'warning' },
-
-    { name: 'option 1', value: 30, color: 'primary' },
 ])
 </script>
 <style scoped>

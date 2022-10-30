@@ -1,39 +1,35 @@
 <template>
     <v-card class="card">
+        <!-- Question -->
         <v-card-title>
             <v-row no-gutters>
                 <v-col cols="12">
-                    <v-text-field label="Question" v-model="question" placeholder="What is your Name ?" clearable />
+                    <v-text-field label="Question" v-model="newQuestion" placeholder="What is your Name ?" clearable
+                        @focusout="handelSetNewQuestion" />
                 </v-col>
-                <v-btn @click="handelSetQuestion">set question</v-btn> <!--handlerSetQuestion can be managed by native focusout-->
             </v-row>
         </v-card-title>
 
         <v-card-text>
-            <div no-gutters v-for="n in optionsCounter" :key="n">
-                <v-row no-gutters dense>
-                    <v-col cols="10">
-                        <v-text-field clearable />
-                    </v-col>
-                    <v-col cols="2">
-                        <v-btn class="ml-5 mt-2" size="small" icon="mdi-delete" color="danger" />
-                    </v-col>
-                </v-row>
-            </div>
-
+            <!-- Answear -->
             <v-row no-gutters class="mb-10">
                 <v-col cols="10">
-                    <v-text-field label="Question" placeholder="Type an answer" clearable />
+                    <v-text-field label="Answear" v-model="newAnswear" placeholder="Type an answer" clearable />
                 </v-col>
                 <v-col cols="2">
-                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="success" />
+                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary" @click="handerAddNewAnswear"/>
                 </v-col>
             </v-row>
+
+            <!-- list of answears -->
+            <div no-gutters v-for="(answear, id) in answears" :key="id">
+                <AnswearComponent :answear="answear.value"/>
+            </div>
         </v-card-text>
 
         <v-card-actions class="cardActions">
             <v-row no-gutters style="align-items: baseline; justify-content: end;">
-                <v-col cols="4">{{ optionsCounter }}/10 possible answers</v-col>
+                <v-col cols="4">{{ answears.length }}/10 possible answers</v-col>
                 <v-col cols="4">
                     <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger">
                         Reset
@@ -46,14 +42,22 @@
 <script setup>
 
 import { useVoteStore } from '@/store';
-import { ref } from 'vue';
+import { v4 as uuid } from 'uuid';
+import { ref, computed } from 'vue';
+import AnswearComponent from '../AnswearComponent.vue';
 
 const voteStore = useVoteStore()
 
-const optionsCounter = ref(0)
+/* Question */
+const newQuestion = ref('')
+const handelSetNewQuestion = () => { voteStore.defineQuestion(newQuestion.value) }
 
-const question = ref('')
-const handelSetQuestion = () => { voteStore.defineTopicQuestion(question.value) }
+/* Answear */
+const newAnswear = ref()
+const handerAddNewAnswear = () => { voteStore.addAnswear({ id: uuid(), value: newAnswear.value }) }
+const answears = computed(() => {
+    return voteStore.getAnswears
+})
 
 </script>
 
@@ -62,11 +66,13 @@ const handelSetQuestion = () => { voteStore.defineTopicQuestion(question.value) 
     margin-bottom: 1%;
     min-height: 100%;
 }
+
 .cardActions {
     bottom: 0px;
     min-width: 100%;
     position: absolute;
 }
+
 .resetBtn {
     min-width: 100%;
 }

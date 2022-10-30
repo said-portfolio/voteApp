@@ -27,7 +27,7 @@ import { computed } from '@vue/reactivity';
 const voteStore = useVoteStore()
 
 const question = computed(() => { 
-    return voteStore.getTopicQuestion
+    return voteStore.getQuestion
 })
 
 

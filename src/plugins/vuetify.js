@@ -1,5 +1,6 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
+import colors from "vuetify/lib/util/colors";
 import 'vuetify/styles'
 
 // Vuetify
@@ -9,13 +10,11 @@ export default createVuetify({
   theme: {
     themes: {
       light: {
-        dark: false,
         colors: {
-          primary: "#5DADE2",
-          secondary: "#1B4F72",
-          success: "#52BE80",
-          warning: "#F39C12",
-          danger: "#C0392B",
+          primary: colors.blue.darken1,
+          secondary: colors.green.darken1,
+          warning: colors.orange.darken1,
+          danger: colors.deepOrange.darken1,
         },
       },
     },

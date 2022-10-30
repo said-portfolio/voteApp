@@ -3,15 +3,19 @@ import { ref } from 'vue';
 
 export const useVoteStore = defineStore('vote', {
   state: () => ({
-    topicQuestion: ref('')
-
+    question: ref(''),
+    answears: ref([])
   }),
   getters: {
-    getTopicQuestion: (state) => state.topicQuestion,
+    getQuestion: (state) => state.question,
+    getAnswears: (state) => state.answears,
   },
   actions: {
-    defineTopicQuestion(question) {
-      this.topicQuestion = question;
+    defineQuestion(question) {
+      this.question = question;
     },
+    addAnswear(answear) {
+      this.answears.push({ id: answear.id, value: answear.value })
+    }
   },
 })
