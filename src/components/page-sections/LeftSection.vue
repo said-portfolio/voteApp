@@ -11,25 +11,25 @@
         </v-card-title>
 
         <v-card-text>
-            <!-- Answear -->
+            <!-- Answer -->
             <v-row no-gutters class="mb-10">
                 <v-col cols="10">
-                    <v-text-field label="Answear" v-model="newAnswear" placeholder="Type an answer" clearable />
+                    <v-text-field label="Answer" v-model="newAnswer" placeholder="Type an answer" clearable />
                 </v-col>
                 <v-col cols="2">
-                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary" @click="handerAddNewAnswear"/>
+                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary" @click="handerAddNewAnswer"/>
                 </v-col>
             </v-row>
 
-            <!-- list of answears -->
-            <div no-gutters v-for="(answear, id) in answears" :key="id">
-                <AnswearComponent :answear="answear.value"/>
+            <!-- list of Answers -->
+            <div no-gutters v-for="(answer, id) in answers" :key="id">
+                <AnswerComponent :answer="answer.value"/>
             </div>
         </v-card-text>
 
         <v-card-actions class="cardActions">
             <v-row no-gutters style="align-items: baseline; justify-content: end;">
-                <v-col cols="4">{{ answears.length }}/10 possible answers</v-col>
+                <v-col cols="4">{{ answers.length }}/10 possible answers</v-col>
                 <v-col cols="4">
                     <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger">
                         Reset
@@ -44,7 +44,7 @@
 import { useVoteStore } from '@/store';
 import { v4 as uuid } from 'uuid';
 import { ref, computed } from 'vue';
-import AnswearComponent from '../AnswearComponent.vue';
+import AnswerComponent from '../AnswerComponent.vue';
 
 const voteStore = useVoteStore()
 
@@ -52,11 +52,11 @@ const voteStore = useVoteStore()
 const newQuestion = ref('')
 const handelSetNewQuestion = () => { voteStore.defineQuestion(newQuestion.value) }
 
-/* Answear */
-const newAnswear = ref()
-const handerAddNewAnswear = () => { voteStore.addAnswear({ id: uuid(), value: newAnswear.value }) }
-const answears = computed(() => {
-    return voteStore.getAnswears
+/* Answer */
+const newAnswer = ref()
+const handerAddNewAnswer = () => { voteStore.addAnswer({ id: uuid(), value: newAnswer.value }) }
+const answers = computed(() => {
+    return voteStore.getAnswers
 })
 
 </script>

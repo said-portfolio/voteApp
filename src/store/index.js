@@ -4,18 +4,18 @@ import { ref } from 'vue';
 export const useVoteStore = defineStore('vote', {
   state: () => ({
     question: ref(''),
-    answears: ref([])
+    answers: ref([])
   }),
   getters: {
     getQuestion: (state) => state.question,
-    getAnswears: (state) => state.answears,
+    getAnswers: (state) => state.answers,
   },
   actions: {
     defineQuestion(question) {
       this.question = question;
     },
-    addAnswear(answear) {
-      this.answears.push({ id: answear.id, value: answear.value })
+    addAnswer(answer) {
+      this.answers.push({ id: answer.id, value: answer.value })
     }
   },
 })
