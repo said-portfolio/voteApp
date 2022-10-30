@@ -19,9 +19,20 @@
         </v-card-actions>
     </v-card>
 </template>
+
 <script setup>
-const question = 'What is your question ?'
+import { useVoteStore } from '@/store';
+import { computed } from '@vue/reactivity';
+
+const voteStore = useVoteStore()
+
+const question = computed(() => { 
+    return voteStore.getQuestion
+})
+
+
 </script>
+
 <style scoped>
 .card {
     margin-bottom: 1%;
