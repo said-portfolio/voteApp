@@ -1,5 +1,5 @@
 <template>
-    <v-dialog width="30em" :model-value=true>
+    <v-dialog width="30em" :model-value=true persistent>
         <v-card>
             <v-card-title class="ml-3">Delete {{ answerValue }}</v-card-title>
             <v-card-text>
@@ -7,10 +7,10 @@
             </v-card-text>
 
             <v-card-actions class="editBtn">
-                <v-btn prepend-icon="mdi-pencil-outline" variant="outlined" color="warning"
+                <v-btn prepend-icon="mdi-pencil-outline" variant="outlined" color="success"
                     @click="handleEditAnswer(props.answer.id)">
                     Edit</v-btn>
-                <v-btn prepend-icon="mdi-cancel" variant="outlined" color="primary" @click="emit('close')">Cancel
+                <v-btn prepend-icon="mdi-cancel" variant="outlined" color="danger" @click="emit('close')">Cancel
                 </v-btn>
             </v-card-actions>
         </v-card>

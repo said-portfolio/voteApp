@@ -32,12 +32,13 @@
             <v-row no-gutters style="align-items: baseline; justify-content: end;">
                 <v-col cols="4" class="mr-10">{{ answers.length }}/10 possible answers</v-col>
                 <v-col cols="4">
-                    <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger" @click="voteStore.resetAll()">
+                    <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger" @click="showResetAllDialog = true">
                         Reset
                     </v-btn>
                 </v-col>
             </v-row>
         </v-card-actions>
+        <ResetDialog v-if="showResetAllDialog" @close="showResetAllDialog = false"/>
     </v-card>
 </template>
 <script setup>
@@ -46,8 +47,11 @@ import { useVoteStore } from '@/store';
 import { v4 as uuid } from 'uuid';
 import { ref, computed } from 'vue';
 import AnswerComponent from '../AnswerComponent.vue';
+import ResetDialog from '../dialogs/ResetDialog.vue';
 
 const voteStore = useVoteStore()
+
+const showResetAllDialog =ref(false)
 
 /* Question */
 const newQuestion = ref('')
