@@ -4,27 +4,35 @@
             <v-text-field v-model="getAnswer" />
         </v-col>
         <v-col cols="2">
-            <v-btn class="ml-5 mt-2" size="small" icon="mdi-delete-outline" color="danger" @click="handelShowDeleteDialog"/>
+            <v-btn class="ml-5 mt-2" size="small" icon="mdi-delete-outline" color="danger" @click="handleShowDeleteDialog"/>
         </v-col>
-        <v-col cols="2">
-            <v-btn class="ml-5 mt-2" size="small" icon="mdi-pencil-outline" color="warning" />
-        </v-col>
-        <DeleteDialog v-if="showDeleteDialog"/>
+        <!--v-col cols="2">
+            <v-btn class="ml-5 mt-2" size="small" icon="mdi-pencil-outline" color="warning" @click="handleShowEditDialog"/>
+        </v-col-->
+        <DeleteDialog v-if="showDeleteDialog" :answer="props.answer" @close="showDeleteDialog = false"/>
+        <EditDialog v-if="showEditDialog" :answer="props.answer" @close="showEditDialog = false"/>
     </v-row>
 </template>
 <script setup>
 import { computed, ref } from 'vue'
 import DeleteDialog from './dialogs/DeleteDialog.vue';
+import EditDialog from './dialogs/EditDialog.vue';
 
-/* Dialog */
+/* Delete dialog */
 let showDeleteDialog = ref(false)
-const handelShowDeleteDialog = () => {
+const handleShowDeleteDialog = () => {
     return showDeleteDialog.value = true
 }
+
+/* Edit dialog */
+let showEditDialog = ref(false)
+/* const handleShowEditDialog = () => {
+    return showEditDialog.value = true
+} */
 
 /* Answer */
 let props = defineProps(['answer'])
 const getAnswer = computed(() => {
-    return props.answer;
+    return props.answer.value;
 })
 </script>

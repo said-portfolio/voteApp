@@ -16,6 +16,9 @@ export const useVoteStore = defineStore('vote', {
     },
     addAnswer(answer) {
       this.answers.push({ id: answer.id, value: answer.value })
+    },
+    deleteAnswer(id) {
+      this.answers = this.answers.filter((answer) => { return answer.id !== id })
     }
   },
 })

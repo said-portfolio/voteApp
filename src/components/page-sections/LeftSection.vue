@@ -17,19 +17,20 @@
                     <v-text-field label="Answer" v-model="newAnswer" placeholder="Type an answer" clearable />
                 </v-col>
                 <v-col cols="2">
-                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary" @click="handerAddNewAnswer"/>
+                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary" @click="handleAddNewAnswer"/>
                 </v-col>
             </v-row>
 
             <!-- list of Answers -->
             <div no-gutters v-for="(answer, id) in answers" :key="id">
-                <AnswerComponent :answer="answer.value"/>
+                <AnswerComponent :answer="answer"/>
             </div>
         </v-card-text>
 
+        <!-- reset btn & answers counter -->
         <v-card-actions class="cardActions">
             <v-row no-gutters style="align-items: baseline; justify-content: end;">
-                <v-col cols="4">{{ answers.length }}/10 possible answers</v-col>
+                <v-col cols="4" class="mr-10">{{ answers.length }}/10 possible answers</v-col>
                 <v-col cols="4">
                     <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger">
                         Reset
@@ -54,11 +55,13 @@ const handelSetNewQuestion = () => { voteStore.defineQuestion(newQuestion.value)
 
 /* Answer */
 const newAnswer = ref()
-const handerAddNewAnswer = () => { voteStore.addAnswer({ id: uuid(), value: newAnswer.value }) }
+const handleAddNewAnswer = () => {
+    voteStore.addAnswer({ id: uuid(), value: newAnswer.value })
+    newAnswer.value = null
+}
 const answers = computed(() => {
     return voteStore.getAnswers
 })
-
 </script>
 
 <style scoped>
