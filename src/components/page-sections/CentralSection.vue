@@ -5,7 +5,8 @@
         </v-card-title>
         <v-card-text class="mt-8">
             <v-radio-group v-model="selectedAnswer">
-                <v-radio :label="answer.value" :value="answer.value" v-for="answer in answers" :key="answer.id" />
+                <v-radio :label="answer.value" :value="{ id: answer.id, value: answer.value }" v-for="answer in answers"
+                    :key="answer.id" />
             </v-radio-group>
         </v-card-text>
         <v-card-actions class="cardActions">
@@ -23,7 +24,7 @@
 
 <script setup>
 import { useVoteStore } from '@/store';
-import { ref, computed } from '@vue/reactivity';
+import { ref, computed } from 'vue';
 
 const voteStore = useVoteStore()
 const selectedAnswer = ref(null)
@@ -31,9 +32,10 @@ const selectedAnswer = ref(null)
 const question = computed(() => {
     return voteStore.getQuestion
 })
+
 const answers = voteStore.getAnswers
 const selectedvalue = () => {
-    console.log('selected answer: ', selectedAnswer)
+    voteStore.vote(selectedAnswer.value)
 }
 </script>
 
