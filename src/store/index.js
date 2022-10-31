@@ -19,6 +19,13 @@ export const useVoteStore = defineStore('vote', {
     },
     deleteAnswer(id) {
       this.answers = this.answers.filter((answer) => { return answer.id !== id })
+    },
+    editAnswer(id, newValue) {
+      return this.answers[id.value].value = newValue
+    },
+    resetAll() {
+      this.question = '',
+      this.answers = []
     }
   },
 })

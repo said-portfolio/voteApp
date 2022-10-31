@@ -3,14 +3,15 @@
         <v-col cols="10">
             <v-text-field v-model="getAnswer" />
         </v-col>
-        <v-col cols="2">
-            <v-btn class="ml-5 mt-2" size="small" icon="mdi-delete-outline" color="danger" @click="handleShowDeleteDialog"/>
+        <v-col cols="1">
+            <v-btn class="ma-2" size="small" icon="mdi-delete-outline" color="danger" @click="handleShowDeleteDialog" />
         </v-col>
-        <!--v-col cols="2">
-            <v-btn class="ml-5 mt-2" size="small" icon="mdi-pencil-outline" color="warning" @click="handleShowEditDialog"/>
-        </v-col-->
-        <DeleteDialog v-if="showDeleteDialog" :answer="props.answer" @close="showDeleteDialog = false"/>
-        <EditDialog v-if="showEditDialog" :answer="props.answer" @close="showEditDialog = false"/>
+        <v-col cols="1">
+            <v-btn class="ml-3 ma-2" size="small" icon="mdi-pencil-outline" color="warning"
+                @click="handleShowEditDialog" />
+        </v-col>
+        <DeleteDialog v-if="showDeleteDialog" :answer="props.answer" @close="showDeleteDialog = false" />
+        <EditDialog v-if="showEditDialog" :answer="props.answer" @close="showEditDialog = false" />
     </v-row>
 </template>
 <script setup>
@@ -26,9 +27,9 @@ const handleShowDeleteDialog = () => {
 
 /* Edit dialog */
 let showEditDialog = ref(false)
-/* const handleShowEditDialog = () => {
+const handleShowEditDialog = () => {
     return showEditDialog.value = true
-} */
+}
 
 /* Answer */
 let props = defineProps(['answer'])

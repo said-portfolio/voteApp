@@ -4,7 +4,7 @@
         <v-card-title>
             <v-row no-gutters>
                 <v-col cols="12">
-                    <v-text-field label="Question" v-model="newQuestion" placeholder="What is your Name ?" clearable
+                    <v-text-field label="Question" placeholder="What is your Name ?" v-model="newQuestion" clearable
                         @focusout="handelSetNewQuestion" />
                 </v-col>
             </v-row>
@@ -17,13 +17,13 @@
                     <v-text-field label="Answer" v-model="newAnswer" placeholder="Type an answer" clearable />
                 </v-col>
                 <v-col cols="2">
-                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary" @click="handleAddNewAnswer"/>
+                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary"
+                        :disabled="isAddNewAnswerBtnDisabled" @click="handleAddNewAnswer" />
                 </v-col>
             </v-row>
-
             <!-- list of Answers -->
             <div no-gutters v-for="(answer, id) in answers" :key="id">
-                <AnswerComponent :answer="answer"/>
+                <AnswerComponent :answer="answer" />
             </div>
         </v-card-text>
 
@@ -32,7 +32,7 @@
             <v-row no-gutters style="align-items: baseline; justify-content: end;">
                 <v-col cols="4" class="mr-10">{{ answers.length }}/10 possible answers</v-col>
                 <v-col cols="4">
-                    <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger">
+                    <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger" @click="voteStore.resetAll()">
                         Reset
                     </v-btn>
                 </v-col>
@@ -51,17 +51,25 @@ const voteStore = useVoteStore()
 
 /* Question */
 const newQuestion = ref('')
-const handelSetNewQuestion = () => { voteStore.defineQuestion(newQuestion.value) }
+const handelSetNewQuestion = () => {
+    voteStore.defineQuestion(newQuestion.value)
+    newQuestion.value = ''
+}
 
 /* Answer */
 const newAnswer = ref()
+const answers = computed(() => {
+    return voteStore.getAnswers
+})
+const isAddNewAnswerBtnDisabled = computed(() => {
+    return answers.value.length === 10 || !newAnswer.value
+})
+
+/* Actions */
 const handleAddNewAnswer = () => {
     voteStore.addAnswer({ id: uuid(), value: newAnswer.value })
     newAnswer.value = null
 }
-const answers = computed(() => {
-    return voteStore.getAnswers
-})
 </script>
 
 <style scoped>
