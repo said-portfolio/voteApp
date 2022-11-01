@@ -4,33 +4,42 @@ import { ref } from 'vue';
 export const useVoteStore = defineStore('vote', {
   state: () => ({
     question: ref(''),
-    answers: ref([]),
+    options: ref([]),
     votes: ref([])
   }),
   getters: {
     getQuestion: (state) => state.question,
-    getAnswers: (state) => state.answers,
+    getOptions: (state) => state.options,
     getVotes: (state) => state.votes
   },
   actions: {
     defineQuestion(question) {
       this.question = question;
     },
-    addAnswer(answer) {
-      this.answers.push({ id: answer.id, value: answer.value })
+
+
+    addOption(option) {
+      this.options.push({ id: option.id, value: option.value, counter: option.counter })
     },
-    deleteAnswer(id) {
-      this.answers = this.answers.filter((answer) => { return answer.id !== id })
+
+
+    deleteOption(id) {
+      this.options = this.options.filter((option) => { return option.id !== id })
     },
-    editAnswer(id, newValue) {
-      return this.answers[id.value].value = newValue
+    editOptionName(id, newValue) {
+      return this.options[id.value].value = newValue
+    },
+    editOptionCounter(name) {
+      const itemId = this.options.findIndex((option) => option.value === name)
+      // console.log('this.options[id.value]: ', name)
+      return this.options[itemId].counter+=1
     },
     resetAll() {
       this.question = '',
-      this.answers = []
+      this.options = []
     },
     vote(vote) {
-      this.votes.push({ id: vote.id, value: vote.value })
+      this.votes.push(vote.option)
     }
   },
 })
