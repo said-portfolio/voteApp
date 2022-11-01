@@ -29,8 +29,8 @@
 
         <!-- reset btn & options counter -->
         <v-card-actions class="cardActions">
-            <v-row no-gutters style="align-items: baseline; justify-content: end;">
-                <v-col cols="4" class="mr-10">{{ voteStore.getOptions.length }}/10 possible answers</v-col>
+            <v-row no-gutters style="justify-content: end;">
+                <v-col cols="8" class="answersCnt">{{ voteStore.getOptions.length }}/10 possible answers</v-col>
                 <v-col cols="4">
                     <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger" @click="showResetAllDialog = true">
                         Reset
@@ -84,10 +84,14 @@ const handleAddNewOption = () => {
 .cardActions {
     bottom: 0px;
     min-width: 100%;
-    position: absolute;
+    position: relative;
 }
 
 .resetBtn {
     min-width: 100%;
+}
+.answersCnt {
+    align-self: center;
+    text-align: center;
 }
 </style>

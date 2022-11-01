@@ -29,7 +29,7 @@ const voteStore = useVoteStore()
 const selectedOption = ref(0)
 
 const selectedValue = () => {
-    voteStore.getOptions.filter((v) => v.value === selectedOption.value ? voteStore.editOptionCounter(v.value) : false)
+    voteStore.getOptions.filter((v) => v.value === selectedOption.value ? voteStore.vote(v.value) : false)
 }
 </script>
 
@@ -42,7 +42,7 @@ const selectedValue = () => {
 .cardActions {
     bottom: 0px;
     min-width: 100%;
-    position: absolute;
+    position: relative;
 }
 
 .voteBtn {
