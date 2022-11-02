@@ -1,32 +1,39 @@
 <template>
     <v-card class="card">
         <v-card-title class="mt-5 ml-3">
-            {{ question }}
+            {{ voteStore.getQuestion }}
         </v-card-title>
-        <v-card-actions v-for="n in options" :key="n">
+        <v-card-actions v-for="(option, id) in voteStore.options" :key="id">
             <v-row>
                 <v-col cols="12">
-                    <v-progress-linear :model-value="n.value" :color="n.color" height="25">
-                        {{ n.name }} - {{ n.value }} vote(s)
+                    <v-progress-linear :model-value="option.counter" :color="colors[id].color" height="25">
+                        {{ option.value }} - {{ option.counter }} vote(s)
                     </v-progress-linear>
                 </v-col>
             </v-row>
         </v-card-actions>
-        <v-card-title class="mt-5 ml-1">
-            Total votes: {{ totalVotes }}
-        </v-card-title>
+        <div class="cardTitle">
+            <h3>Total votes: <v-chip>{{ voteStore.getOptions.length }}</v-chip></h3>
+        </div>
     </v-card>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { useVoteStore } from '@/store';
 
-const question = 'What is your question ?'
-const totalVotes = ref(20)
-const options = ref([
-    { name: 'option 1', value: 10, color: 'primary' },
-    { name: 'option 2', value: 50, color: 'secondary' },
-    { name: 'option 3', value: 70, color: 'warning' },
-])
+const voteStore = useVoteStore()
+const colors = [
+    { id: 1, color: '#64B5F6' },
+    { id: 2, color: '#81C784' },
+    { id: 3, color: '#DCE775' },
+    { id: 4, color: '#FF8A65' },
+    { id: 5, color: '#90A4AE' },
+    { id: 6, color: '#FFD54F' },
+    { id: 7, color: '#B2FF59' },
+    { id: 8, color: '#9575CD' },
+    { id: 9, color: '#F06292' },
+    { id: 10, color: '#80CBC4' }
+]
+
 </script>
 <style scoped>
 .card {
@@ -34,13 +41,10 @@ const options = ref([
     min-height: 100%;
 }
 
-.cardActions {
-    bottom: 0px;
+.cardTitle {
+    margin-left: 15px;
+    bottom: 13px;
     min-width: 100%;
     position: absolute;
-}
-
-.voteBtn {
-    min-width: 100%;
 }
 </style>

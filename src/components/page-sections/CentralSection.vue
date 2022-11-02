@@ -1,19 +1,18 @@
 <template>
     <v-card class="card">
         <v-card-title class="mt-5 ml-3">
-            {{ question }}
+            {{ voteStore.getQuestion }}
         </v-card-title>
         <v-card-text class="mt-8">
-            <v-radio-group v-model="selectedAnswer">
-                <v-radio :label="answer.value" :value="{ id: answer.id, value: answer.value }" v-for="answer in answers"
-                    :key="answer.id" />
+            <v-radio-group v-model="selectedOption">
+                <v-radio v-for="option in voteStore.getOptions" :label="option.value" :value="option.value" :key="option.id" />
             </v-radio-group>
         </v-card-text>
         <v-card-actions class="cardActions">
             <v-row no-gutters style="align-items: baseline; justify-content: end;">
                 <v-col cols="4">
                     <v-btn class="voteBtn" prepend-icon="mdi-checkbox-marked-circle-outline" variant="outlined"
-                        color="success" @click="selectedvalue">
+                        color="success" @click="selectedValue">
                         Vote
                     </v-btn>
                 </v-col>
@@ -24,18 +23,13 @@
 
 <script setup>
 import { useVoteStore } from '@/store';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 
 const voteStore = useVoteStore()
-const selectedAnswer = ref(null)
+const selectedOption = ref(0)
 
-const question = computed(() => {
-    return voteStore.getQuestion
-})
-
-const answers = voteStore.getAnswers
-const selectedvalue = () => {
-    voteStore.vote(selectedAnswer.value)
+const selectedValue = () => {
+    voteStore.getOptions.filter((v) => v.value === selectedOption.value ? voteStore.vote(v.value) : false)
 }
 </script>
 

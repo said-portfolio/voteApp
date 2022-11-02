@@ -1,14 +1,14 @@
 <template>
     <v-dialog width="30em" :model-value=true persistent>
         <v-card>
-            <v-card-title class="ml-3">Delete {{ answerValue }}</v-card-title>
+            <v-card-title class="ml-3">Edit {{ optionValue }}</v-card-title>
             <v-card-text>
-                <v-text-field v-model="newAnswer" />
+                <v-text-field v-model="newOption" />
             </v-card-text>
 
             <v-card-actions class="editBtn">
                 <v-btn prepend-icon="mdi-pencil-outline" variant="outlined" color="success"
-                    @click="handleEditAnswer(props.answer.id)">
+                    @click="handleEditOption(props.option.id)">
                     Edit</v-btn>
                 <v-btn prepend-icon="mdi-cancel" variant="outlined" color="danger" @click="emit('close')">Cancel
                 </v-btn>
@@ -22,27 +22,23 @@ import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
 
 const voteStore = useVoteStore()
-const newAnswer = ref('')
-
-const answers = computed(() => {
-    return voteStore.getAnswers
-})
+const newOption = ref('')
 
 /* Emit */
 const emit = defineEmits(['close'])
 
 /* Props */
-const props = defineProps(['answer'])
-const answerValue = computed(() => {
-    return newAnswer.value = props.answer.value;
+const props = defineProps(['option'])
+const optionValue = computed(() => {
+    return newOption.value = props.option.value;
 })
-const answerId = computed(() => {
-    return answers.value.findIndex((answer) => answer.id === props.answer.id)
+const optionId = computed(() => {
+    return voteStore.getOptions.findIndex((option) => option.id === props.option.id)
 })
 
 /* Actions */
-const handleEditAnswer = () => {
-    voteStore.editAnswer(answerId, newAnswer.value)
+const handleEditOption = () => {
+    voteStore.editOptionName(optionId, newOption.value)
     emit('close')
 }
 </script>

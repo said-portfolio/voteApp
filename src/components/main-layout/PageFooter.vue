@@ -1,11 +1,12 @@
 <template>
-    <div class="top-bar">
+    <div class="footer-container">
         Voting tools @ 2022
     </div>
 </template>
 <style scoped>
-.top-bar {
-    line-height: 2em;
-    background-color: bisque;
+.footer-container {
+    text-align: center;
+    line-height: 3em;
+    background-color: #F5F5F5;
 }
 </style>

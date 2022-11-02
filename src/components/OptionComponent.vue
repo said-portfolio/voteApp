@@ -1,7 +1,7 @@
 <template>
     <v-row no-gutters dense>
         <v-col cols="10">
-            <v-text-field v-model="getAnswer" />
+            <v-text-field v-model="getOption" />
         </v-col>
         <v-col cols="1">
             <v-btn class="ma-2" size="small" icon="mdi-delete-outline" color="danger" @click="handleShowDeleteDialog" />
@@ -10,8 +10,8 @@
             <v-btn class="ml-3 ma-2" size="small" icon="mdi-pencil-outline" color="warning"
                 @click="handleShowEditDialog" />
         </v-col>
-        <DeleteDialog v-if="showDeleteDialog" :answer="props.answer" @close="showDeleteDialog = false" />
-        <EditDialog v-if="showEditDialog" :answer="props.answer" @close="showEditDialog = false" />
+        <DeleteDialog v-if="showDeleteDialog" :option="props.option" @close="showDeleteDialog = false" />
+        <EditDialog v-if="showEditDialog" :option="props.option" @close="showEditDialog = false" />
     </v-row>
 </template>
 <script setup>
@@ -31,9 +31,9 @@ const handleShowEditDialog = () => {
     return showEditDialog.value = true
 }
 
-/* Answer */
-let props = defineProps(['answer'])
-const getAnswer = computed(() => {
-    return props.answer.value;
+/* Option */
+let props = defineProps(['option'])
+const getOption = computed(() => {
+    return props.option.value;
 })
 </script>
