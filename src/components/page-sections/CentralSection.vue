@@ -42,7 +42,7 @@ const selectedValue = () => {
 .cardActions {
     bottom: 0px;
     min-width: 100%;
-    position: relative;
+    position: absolute;
 }
 
 .voteBtn {

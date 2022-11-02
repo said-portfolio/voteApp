@@ -12,9 +12,9 @@
                 </v-col>
             </v-row>
         </v-card-actions>
-        <v-card-title class="cardTitle">
-            Total votes: {{ voteStore.getOptions.length }}
-        </v-card-title>
+        <div class="cardTitle">
+            <h3>Total votes: <v-chip>{{ voteStore.getOptions.length }}</v-chip></h3>
+        </div>
     </v-card>
 </template>
 <script setup>
@@ -42,7 +42,8 @@ const colors = [
 }
 
 .cardTitle {
-    bottom: 0px;
+    margin-left: 15px;
+    bottom: 13px;
     min-width: 100%;
     position: absolute;
 }

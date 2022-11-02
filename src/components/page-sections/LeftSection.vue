@@ -1,15 +1,5 @@
 <template>
     <v-card class="card">
-        <!-- Question -->
-        <v-card-title>
-            <v-row no-gutters>
-                <v-col cols="12">
-                    <v-text-field label="Question" placeholder="What is your Name ?" v-model="newQuestion" clearable
-                        @focusout="handelSetNewQuestion" />
-                </v-col>
-            </v-row>
-        </v-card-title>
-
         <v-card-text>
             <!-- Option -->
             <v-row no-gutters class="mb-10">
@@ -30,7 +20,7 @@
         <!-- reset btn & options counter -->
         <v-card-actions class="cardActions">
             <v-row no-gutters style="justify-content: end;">
-                <v-col cols="8" class="answersCnt">{{ voteStore.getOptions.length }}/10 possible answers</v-col>
+                <v-col cols="8" class="answersCnt"><h3><v-chip>{{ voteStore.getOptions.length }}/10</v-chip> possible answers</h3></v-col>
                 <v-col cols="4">
                     <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger" @click="showResetAllDialog = true">
                         Reset
@@ -52,13 +42,6 @@ import ResetDialog from '../dialogs/ResetDialog.vue';
 const voteStore = useVoteStore()
 
 const showResetAllDialog = ref(false)
-
-/* Question */
-const newQuestion = ref('')
-const handelSetNewQuestion = () => {
-    voteStore.defineQuestion(newQuestion.value)
-    newQuestion.value = ''
-}
 
 /* Option */
 const newOption = ref()
@@ -84,7 +67,7 @@ const handleAddNewOption = () => {
 .cardActions {
     bottom: 0px;
     min-width: 100%;
-    position: relative;
+    position: absolute;
 }
 
 .resetBtn {
