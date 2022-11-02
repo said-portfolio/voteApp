@@ -1,14 +1,14 @@
 <template>
-    <v-card class="header-container" >
+    <v-card class="header-container">
         <!-- Question -->
-        <v-card-actions >
-            <v-row no-gutters class="header" >
+        <v-card-actions>
+            <v-row no-gutters class="header">
                 <v-col cols="3" class="ml-10">
                     <!--v-img src="../../assets/logo1.png" class="logo" /-->
                     <h1>Sire vote-a-lot</h1>
                 </v-col>
                 <v-col cols="7">
-                    <v-text-field label="Question"
+                    <v-text-field label="Question" maxlength="80" counter :rules="[rules.counter]"
                         placeholder="Whet is your question? (Press 'Enter' button to validate)" v-model="newQuestion"
                         clearable @keydown.enter="handelSetNewQuestion" />
                 </v-col>
@@ -29,11 +29,18 @@ const handelSetNewQuestion = () => {
     voteStore.defineQuestion(newQuestion.value)
     newQuestion.value = ''
 }
+
+/* Validation rules */
+const rules = ref({
+    counter: value => value.length < 80 || 'Max 80 characters',
+})
+
 </script>
 <style scoped>
 .header {
     margin-top: 1em;
 }
+
 .header-container {
     background-color: #F5F5F5;
 }

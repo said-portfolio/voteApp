@@ -4,7 +4,8 @@
             <!-- Option -->
             <v-row no-gutters class="mb-10">
                 <v-col cols="10">
-                    <v-text-field label="Option" v-model="newOption" placeholder="Type an answer" clearable />
+                    <v-text-field label="Option" v-model="newOption" placeholder="Type an answer" counter clearable
+                        maxlength="80" :rules="[rules.counter]" />
                 </v-col>
                 <v-col cols="2">
                     <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary"
@@ -20,15 +21,20 @@
         <!-- reset btn & options counter -->
         <v-card-actions class="cardActions">
             <v-row no-gutters style="justify-content: end;">
-                <v-col cols="8" class="answersCnt"><h3><v-chip>{{ voteStore.getOptions.length }}/10</v-chip> possible answers</h3></v-col>
+                <v-col cols="8" class="answersCnt">
+                    <h3>
+                        <v-chip>{{ voteStore.getOptions.length }}/10</v-chip> possible answers
+                    </h3>
+                </v-col>
                 <v-col cols="4">
-                    <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger" @click="showResetAllDialog = true">
+                    <v-btn class="resetBtn" prepend-icon="mdi-reload-alert" variant="outlined" color="danger"
+                        @click="showResetAllDialog = true">
                         Reset
                     </v-btn>
                 </v-col>
             </v-row>
         </v-card-actions>
-        <ResetDialog v-if="showResetAllDialog" @close="showResetAllDialog = false"/>
+        <ResetDialog v-if="showResetAllDialog" @close="showResetAllDialog = false" />
     </v-card>
 </template>
 <script setup>
@@ -40,8 +46,12 @@ import OptionComponent from '../OptionComponent.vue';
 import ResetDialog from '../dialogs/ResetDialog.vue';
 
 const voteStore = useVoteStore()
-
 const showResetAllDialog = ref(false)
+
+/* Validation rules */
+const rules = ref({
+    counter: value => value.length < 80 || 'Max 80 characters',
+})
 
 /* Option */
 const newOption = ref()
@@ -73,6 +83,7 @@ const handleAddNewOption = () => {
 .resetBtn {
     min-width: 100%;
 }
+
 .answersCnt {
     align-self: center;
     text-align: center;

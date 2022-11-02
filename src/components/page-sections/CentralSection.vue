@@ -5,7 +5,7 @@
         </v-card-title>
         <v-card-text class="mt-8">
             <v-radio-group v-model="selectedOption">
-                <v-radio v-for="option in voteStore.getOptions" :label="option.value" :value="option.value" :key="option.id" />
+                <v-radio v-for="option in voteStore.getOptions" :label="option.value" :value="option.value" :key="option.id"/>
             </v-radio-group>
         </v-card-text>
         <v-card-actions class="cardActions">
