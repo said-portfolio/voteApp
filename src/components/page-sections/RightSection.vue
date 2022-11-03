@@ -13,7 +13,8 @@
             </v-row>
         </v-card-actions>
         <div class="cardTitle">
-            <h3>Total votes: <v-chip>{{ totalVote }}</v-chip></h3>
+            <h3>Total votes: <v-chip>{{ totalVote }}</v-chip>
+            </h3>
         </div>
     </v-card>
 </template>
@@ -24,7 +25,7 @@ import { computed } from '@vue/reactivity';
 const voteStore = useVoteStore()
 const totalVote = computed(() => {
     return voteStore.getOptions.reduce((some, vote) => {
-        return some+vote.counter
+        return some + vote.counter
     }, 0)
 })
 const colors = [
