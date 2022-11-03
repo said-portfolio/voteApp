@@ -11,6 +11,9 @@ export const useVoteStore = defineStore("vote", {
     getQuestion: (state) => state.question,
     getOptions: (state) => state.options,
     getIsUserSelected: (state) => state.isUserSelected,
+    getTotalVote: (state) => state.options.reduce((some, vote) => {
+        return some + vote.counter
+    }, 0)
   },
   actions: {
     defineQuestion(question) {
