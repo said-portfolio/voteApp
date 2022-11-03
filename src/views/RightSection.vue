@@ -1,8 +1,11 @@
 <template>
     <v-card class="card">
+        <!-- Question -->
         <v-card-title class="mt-5 ml-3">
             {{ voteStore.getQuestion }}
         </v-card-title>
+
+        <!-- Chart-->
         <v-card-actions v-for="(option, id) in voteStore.options" :key="id">
             <v-row>
                 <v-col cols="12">
@@ -12,6 +15,8 @@
                 </v-col>
             </v-row>
         </v-card-actions>
+
+        <!-- Vote Counter -->
         <div class="cardTitle">
             <h3>Total votes: <v-chip>{{ totalVote }}</v-chip>
             </h3>
@@ -23,11 +28,13 @@ import { useVoteStore } from '@/store';
 import { computed } from '@vue/reactivity';
 
 const voteStore = useVoteStore()
+
 const totalVote = computed(() => {
     return voteStore.getOptions.reduce((some, vote) => {
         return some + vote.counter
     }, 0)
 })
+
 const colors = [
     { id: 1, color: '#64B5F6' },
     { id: 2, color: '#81C784' },

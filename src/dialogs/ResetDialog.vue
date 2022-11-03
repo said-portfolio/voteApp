@@ -30,7 +30,7 @@ const handleResetAll = () => {
 
 <style scoped>
 .resetBtn {
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 1%;
 }
 </style>

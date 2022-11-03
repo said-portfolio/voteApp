@@ -1,12 +1,12 @@
 <template>
   <v-app>
     <MainLayout>
-      <MainSection/>
+      <MainComponent />
     </MainLayout>
   </v-app>
 </template>
 
 <script setup>
-import MainLayout from './components/main-layout/MainLayout.vue';
-import MainSection from './components/main-section/MainSection.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
+import MainComponent from '@/components/MainComponent.vue';
 </script>

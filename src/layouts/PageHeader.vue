@@ -51,7 +51,7 @@ const rules = ref({
 
 .role {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     font-size: 1.4em;
 }
 </style>
