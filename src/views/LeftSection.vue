@@ -4,7 +4,7 @@
             <!-- Add option -->
             <v-row no-gutters class="mb-10">
                 <v-col cols="12">
-                    <v-text-field label="Option" v-model="newOption" placeholder="Type an answer (Press 'Enter' button to validate)" counter clearable
+                    <v-text-field label="Option" v-model="newOption" placeholder="Type an answer (Press 'Enter' button to validate)" counter
                         maxlength="80" :rules="[rules.counter]" :disabled="voteStore.isUserSelected"
                         @keydown.enter="handleAddNewOption" />
                 </v-col>
@@ -48,7 +48,7 @@ const showResetAllDialog = ref(false)
 
 /* Validation rules */
 const rules = ref({
-    counter: value => value.length < 80 || 'Max 80 characters',
+    counter: value => value ? value.length < 80 || 'Max 80 characters' : true,
 })
 
 /* Option */

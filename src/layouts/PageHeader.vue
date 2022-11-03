@@ -7,9 +7,9 @@
                     <h1>Sir vote-a-lot</h1>
                 </v-col>
                 <v-col cols="5">
-                    <v-text-field label="Question" maxlength="80" counter :rules="[rules.counter]"
+                    <v-text-field label="Question" maxlength="80" counter :rules="[rules.counter]" clearable
                         placeholder="What is your question? (Press 'Enter' button to validate)" v-model="newQuestion"
-                        clearable @keydown.enter="handelSetNewQuestion" :disabled="voteStore.isUserSelected" />
+                        @keydown.enter="handelSetNewQuestion" :disabled="voteStore.isUserSelected" validateOnBlur/>
                 </v-col>
 
                 <!-- User Role -->
@@ -36,7 +36,7 @@ const handelSetNewQuestion = () => {
 
 /* Validation rules */
 const rules = ref({
-    counter: value => value.length < 80 || 'Max 80 characters',
+    counter: value => value ? value.length < 80 || 'Max 80 characters' : true,
 })
 
 </script>
