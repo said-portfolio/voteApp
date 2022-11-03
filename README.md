@@ -1,7 +1,5 @@
 # app
 
-'Sire vote a lot' is an application made with VueJs 3 (Composition components API), Pinia (state manager) and vuetify 3 (3.0.0-beta.0)
-
 'Sire vote a lot' is an application is a single page application which is divided in three sections. On the first section, the user can
 create a poll with up to 10 options. In the central one, the user can vote by selecting one of the options and
 pressing the "vote" button. On the right, the chart will update based on the questions created and the votes that
