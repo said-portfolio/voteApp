@@ -1,14 +1,14 @@
 <template>
     <v-row no-gutters dense>
         <v-col cols="10">
-            <v-text-field v-model="getOption" />
+            <v-text-field v-model="getOption" :disabled="voteStore.isUserSelected"/>
         </v-col>
         <v-col cols="1">
-            <v-btn class="ma-2" size="small" icon="mdi-delete-outline" color="danger" @click="handleShowDeleteDialog" />
+            <v-btn class="ma-2" size="small" icon="mdi-delete-outline" color="danger" @click="handleShowDeleteDialog" :disabled="voteStore.isUserSelected"/>
         </v-col>
         <v-col cols="1">
             <v-btn class="ml-3 ma-2" size="small" icon="mdi-pencil-outline" color="warning"
-                @click="handleShowEditDialog" />
+                @click="handleShowEditDialog" :disabled="voteStore.isUserSelected"/>
         </v-col>
         <DeleteDialog v-if="showDeleteDialog" :option="props.option" @close="showDeleteDialog = false" />
         <EditDialog v-if="showEditDialog" :option="props.option" @close="showEditDialog = false" />
@@ -18,6 +18,9 @@
 import { computed, ref } from 'vue'
 import DeleteDialog from './dialogs/DeleteDialog.vue';
 import EditDialog from './dialogs/EditDialog.vue';
+import { useVoteStore } from '@/store'
+
+const voteStore = useVoteStore()
 
 /* Delete dialog */
 let showDeleteDialog = ref(false)

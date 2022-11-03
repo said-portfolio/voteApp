@@ -15,9 +15,9 @@ export default createVuetify({
           secondary: colors.green.darken1,
           warning: colors.orange.darken1,
           danger: colors.deepOrange.darken1,
+          checkbox: colors.orange.darken3
         },
       },
     },
   },
-  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 })
