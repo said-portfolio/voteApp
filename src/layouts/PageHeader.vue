@@ -8,7 +8,7 @@
                 </v-col>
                 <v-col cols="5">
                     <v-text-field label="Question" maxlength="80" counter :rules="[rules.counter]"
-                        placeholder="Whet is your question? (Press 'Enter' button to validate)" v-model="newQuestion"
+                        placeholder="What is your question? (Press 'Enter' button to validate)" v-model="newQuestion"
                         clearable @keydown.enter="handelSetNewQuestion" :disabled="voteStore.isUserSelected" />
                 </v-col>
 
