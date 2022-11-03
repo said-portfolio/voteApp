@@ -36,16 +36,17 @@ const totalVote = computed(() => {
 })
 
 const colors = [
-    { id: 1, color: '#64B5F6' },
-    { id: 2, color: '#81C784' },
-    { id: 3, color: '#DCE775' },
-    { id: 4, color: '#FF8A65' },
-    { id: 5, color: '#90A4AE' },
-    { id: 6, color: '#FFD54F' },
-    { id: 7, color: '#B2FF59' },
-    { id: 8, color: '#9575CD' },
-    { id: 9, color: '#F06292' },
-    { id: 10, color: '#80CBC4' }
+    { id: 0, color: '#64B5F6' },
+    { id: 1, color: '#81C784' },
+    { id: 2, color: '#DCE775' },
+    { id: 3, color: '#FF8A65' },
+    { id: 4, color: '#90A4AE' },
+    { id: 5, color: '#FFD54F' },
+    { id: 6, color: '#B2FF59' },
+    { id: 7, color: '#9575CD' },
+    { id: 8, color: '#F06292' },
+    { id: 9, color: '#80CBC4' },
+    { id: 10, color: '#8D6E63' }
 ]
 
 </script>

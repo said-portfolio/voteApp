@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const useVoteStore = defineStore('vote', {
+export const useVoteStore = defineStore("vote", {
   state: () => ({
-    question: ref(''),
+    question: ref(""),
     options: ref([]),
     isUserSelected: ref(false),
   }),
@@ -33,12 +33,12 @@ export const useVoteStore = defineStore('vote', {
     editOptionName(id, newValue) {
       return (this.options[id.value].value = newValue);
     },
-    vote(name) {
-      const itemId = this.options.findIndex((option) => option.value === name);
+    vote(id) {
+      const itemId = this.options.findIndex((option) => option.id === id);
       return (this.options[itemId].counter += 1);
     },
     resetAll() {
-      (this.question = ''), (this.options = []);
+      (this.question = ""), (this.options = []);
     },
   },
 });

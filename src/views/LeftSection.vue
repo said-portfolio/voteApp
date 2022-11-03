@@ -3,8 +3,8 @@
         <v-card-text>
             <!-- Add option -->
             <v-row no-gutters class="mb-10">
-                <v-col cols="10">
-                    <v-text-field label="Option" v-model="newOption" placeholder="Type an answer" counter clearable
+                <v-col cols="12">
+                    <v-text-field label="Option" v-model="newOption" placeholder="Type an answer (Press 'Enter' button to validate)" counter clearable
                         maxlength="80" :rules="[rules.counter]" :disabled="voteStore.isUserSelected"
                         @keydown.enter="handleAddNewOption" />
                 </v-col>
@@ -21,7 +21,7 @@
             <v-row no-gutters style="justify-content: end;">
                 <v-col cols="8" class="answersCnt">
                     <h3>
-                        <v-chip>{{ voteStore.getOptions.length }}/10</v-chip> possible answers
+                        <v-chip>{{ voteStore.getOptions.length }}/10</v-chip> Possible answers
                     </h3>
                 </v-col>
                 <v-col cols="4">
@@ -57,8 +57,10 @@ const newCounter = ref(0)
 
 /* Actions */
 const handleAddNewOption = () => {
-    voteStore.addOption({ id: uuid(), value: newOption.value, counter: newCounter.value })
-    newOption.value = null
+    if (newOption.value && voteStore.options.length < 10) {
+        voteStore.addOption({ id: uuid(), value: newOption.value, counter: newCounter.value })
+        newOption.value = null
+    }
 }
 </script>
 
