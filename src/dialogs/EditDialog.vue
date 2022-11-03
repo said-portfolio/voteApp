@@ -5,7 +5,6 @@
             <v-card-text>
                 <v-text-field v-model="newOption" />
             </v-card-text>
-
             <v-card-actions class="editBtn">
                 <v-btn prepend-icon="mdi-pencil-outline" variant="outlined" color="success"
                     @click="handleEditOption(props.option.id)">
@@ -44,7 +43,7 @@ const handleEditOption = () => {
 </script>
 <style scoped>
 .editBtn {
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 4%;
 }
 </style>

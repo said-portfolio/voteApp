@@ -5,13 +5,12 @@
             <v-card-text>
                 <v-text-field v-model="getOption" />
             </v-card-text>
-
             <v-card-actions class="deleteBtn">
-                <v-btn prepend-icon="mdi-delete-outline" variant="outlined" color="success" @click="handleDeleteOption(props.option.id)">
+                <v-btn prepend-icon="mdi-delete-outline" variant="outlined" color="success"
+                    @click="handleDeleteOption(props.option.id)">
                     Delete</v-btn>
                 <v-btn prepend-icon="mdi-cancel" variant="outlined" color="danger" @click="emit('close')">Cancel</v-btn>
             </v-card-actions>
-
         </v-card>
     </v-dialog>
 </template>
@@ -37,7 +36,7 @@ const handleDeleteOption = () => {
 </script>
 <style scoped>
 .deleteBtn {
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 4%;
 }
 </style>

@@ -1,20 +1,18 @@
 <template>
     <v-card class="card">
         <v-card-text>
-            <!-- Option -->
+            <!-- Add option -->
             <v-row no-gutters class="mb-10">
                 <v-col cols="10">
                     <v-text-field label="Option" v-model="newOption" placeholder="Type an answer" counter clearable
-                        maxlength="80" :rules="[rules.counter]" :disabled="voteStore.isUserSelected" @keydown.enter="handleAddNewOption"/>
+                        maxlength="80" :rules="[rules.counter]" :disabled="voteStore.isUserSelected"
+                        @keydown.enter="handleAddNewOption" />
                 </v-col>
-                <!--v-col cols="2">
-                    <v-btn class="ml-5 mt-2" size="small" icon="mdi-playlist-plus" color="secondary"
-                        :disabled="isAddNewOptionBtnDisabled" @click="handleAddNewOption" />
-                </!--v-col-->
             </v-row>
+
             <!-- list of Options -->
             <div no-gutters v-for="(option, id) in voteStore.getOptions" :key="id">
-                <OptionComponent :option="option"/>
+                <OptionComponent :option="option" />
             </div>
         </v-card-text>
 
@@ -42,8 +40,8 @@
 import { useVoteStore } from '@/store';
 import { v4 as uuid } from 'uuid';
 import { ref } from 'vue';
-import OptionComponent from '../OptionComponent.vue';
-import ResetDialog from '../dialogs/ResetDialog.vue';
+import OptionComponent from '@/components/OptionComponent.vue';
+import ResetDialog from '@/dialogs/ResetDialog.vue';
 
 const voteStore = useVoteStore()
 const showResetAllDialog = ref(false)
@@ -56,10 +54,6 @@ const rules = ref({
 /* Option */
 const newOption = ref()
 const newCounter = ref(0)
-
-/* const isAddNewOptionBtnDisabled = computed(() => {
-    return voteStore.getOptions.length === 10 || !newOption.value
-}) */
 
 /* Actions */
 const handleAddNewOption = () => {
