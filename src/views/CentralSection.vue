@@ -18,7 +18,7 @@
                 v-if="voteStore.getOptions.length >= 2">
                 <v-col cols="4">
                     <v-btn class="voteBtn" prepend-icon="mdi-checkbox-marked-circle-outline" variant="outlined"
-                        color="success" @click="selectedValue">
+                        color="success" @click="handleVote">
                         Vote
                     </v-btn>
                 </v-col>
@@ -43,8 +43,8 @@ import { ref } from 'vue';
 const voteStore = useVoteStore()
 const selectedOption = ref(0)
 
-const selectedValue = () => {
-    voteStore.getOptions.filter((v) => v.id === selectedOption.value ? voteStore.vote(v.id) : false)
+const handleVote = () => {
+    voteStore.getOptions.filter((v) => v.id === selectedOption.value ? voteStore.doVote(v.id) : false)
 }
 </script>
 

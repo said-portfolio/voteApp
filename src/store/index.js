@@ -36,7 +36,7 @@ export const useVoteStore = defineStore("vote", {
     editOptionName(id, newValue) {
       return (this.options[id.value].value = newValue);
     },
-    vote(id) {
+    doVote(id) {
       const itemId = this.options.findIndex((option) => option.id === id);
       return (this.options[itemId].counter += 1);
     },
